@@ -1,22 +1,34 @@
-- ### To be added
+- ### To be added:
 
-01/13/2023
+  01/14/2023
+- Secured header
+- Secured env keys
+- Styling
 
+  01/13/2023
 - Local storage caching of the month
 - Database
-- Bible API
-- Optimize Redux functionality
-- Reliable randomizer
+
+- ### New Feature [Issued date, Integrated date]:
+  [01/13/2023 - 01/14/2023]
+
+-~~ Bible API~~ 
+-~~ Optimize Redux functionality~~  
+-~~ Reliable randomizer~~  
 
 - ### Known Issues
 
+  01/14/2021
+  - Hydration needs polishing
+  - Calling API is excessive, need polishing
+
   01/11/2023
-  ~~- Somewhat slow because of spaghetti useEffect hook~~
-  ~~- Hydration doesn't match text being rendered~~
+  -~~ Somewhat slow because of spaghetti useEffect hook~~
+  -~~ Hydration doesn't match text being rendered~~
 
 - ## Bible Helper Data
 
-from [src/bibleHelper.ts]
+from ~~[src/bibleHelper.ts]~~ -> [src/bibleHelper.json]
 
 ```
 const testament = {
