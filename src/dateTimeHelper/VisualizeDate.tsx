@@ -33,14 +33,14 @@ function VisualizeDate() {
 
   return (
     <section>
-      <h1 className="uppercase text-2xl text-center">
+      <h1 className="text-pastel-dark uppercase text-6xl text-center">
         {currentMonth(date).name}
       </h1>
-      <div className="grid grid-cols-7 gap-1">
+      <div className="bg-pastel-dark grid grid-cols-7 gap-1 p-4 rounded-lg">
         {weekdays.map((value, i: number) => {
           return (
             <div
-              className="uppercase bg-orange-200 text-center text-blue-600"
+              className=" text-pastel-accent uppercase text-center shadow-lg"
               key={i}
             >
               {value.substring(0, 3)}
@@ -53,8 +53,8 @@ function VisualizeDate() {
             <div
               key={i}
               className={`${
-                currentDate === 0 ? "bg-green-100" : "bg-green-200"
-              } h-24 p-2`}
+                currentDate === 0 ? "bg-pastel-color1/20 " : "bg-pastel-color1"
+              } rounded-xl h-24 p-2`}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 const spanText =
                   e.currentTarget.lastChild?.lastChild?.textContent
@@ -74,9 +74,9 @@ function VisualizeDate() {
                   .finally(() => setTimeout(() => dispatch(setVerse("")), 8000))
               }}
             >
-              <p className="text-green-600 flex flex-col text-xs font-thin">
+              <p className="text-pastel-color2 flex flex-col gap-4 text-xs font-thin">
                 {isFillerDate ? "" : currentDate}
-                <span className="text-black text-base font-normal capitalize">
+                <span className="text-pastel-accent font-normal capitalize">
                   {isFillerDate ? "" : verse.replace("-", " ")}
                 </span>
               </p>

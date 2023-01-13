@@ -40,6 +40,7 @@ const objects: Bibles = {
       ],
     },
   ],
+  showVerse: "",
 }
 
 export default function handler(

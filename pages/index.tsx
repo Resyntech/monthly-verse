@@ -14,8 +14,8 @@ const App = (bibles: Bibles): JSX.Element => {
     router.push("/Home")
   }, [dispatch, bibles, router])
   return (
-    <div className="grid h-screen items-center justify-center">
-      <h1 className="text-2xl">Loading....</h1>
+    <div className="bg-pastel-dark grid h-screen items-center justify-center">
+      <h1 className="text-pastel-accent text-2xl">Loading....</h1>
     </div>
   )
 }
@@ -25,7 +25,7 @@ export const getServerSideProps = async () => {
   const options = {
     method: "GET",
     headers: {
-      "api-key": process.env.NEXT_PUBLIC_BIBLE_APP_CREDENTIALS || "",
+      "Api-Key": process.env.NEXT_PUBLIC_BIBLE_APP_CREDENTIALS || "",
       "Content-Type": "application/json",
     },
   }

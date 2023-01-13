@@ -29,18 +29,21 @@ const Home = (): JSX.Element => {
       </Head>
 
       <button
-        className="fixed bottom-4 right-4 rounded-full bg-orange-200 p-4"
+        className="bg-pastel-dark text-pastel-color2 fixed bottom-4 right-4 rounded-full p-4 font-space"
         onClick={handlePrint}
       >
         Print
       </button>
-      <main className="mx-2" ref={componentRef}>
+      <main
+        className="bg-pastel-accent grid grid-flow-col justify-center w-screen h-screen p-2 font-space"
+        ref={componentRef}
+      >
         <VisualizeDate />
         <div
           className={
             bibles.showVerse === ""
               ? "ease-in-out duration-300 opacity-0 rounded-xl fixed right-0 left-0 bottom-5 w-3/4 mx-auto p-2"
-              : `bg-orange-100 ease-in-out duration-300 opacity-100  fixed right-0 left-0 bottom-5 w-3/4 mx-auto p-2`
+              : `bg-pastel-dark text-pastel-accent ease-in-out duration-300 opacity-100  fixed right-0 left-0 bottom-5 w-3/4 mx-auto p-2`
           }
         >
           <h3>{bibles.showVerse}</h3>
