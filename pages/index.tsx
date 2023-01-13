@@ -1,33 +1,41 @@
-import Head from "next/head"
-import { useRef } from "react"
-import { VisualizeDate } from "../src/dateTimeHelper/"
-import { useReactToPrint } from "react-to-print"
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../src/redux/hooks"
+import { setBibles } from "../src/redux/reducers/biblesReducer"
+import { Bibles } from "./_interface"
+import { useRouter } from "next/router"
 
-const App: React.FC = () => {
-  const date = new Date()
-  const componentRef = useRef(null)
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  })
+const App = (bibles: Bibles): JSX.Element => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const state = useAppSelector((s) => s.bibles)
+
+  useEffect(() => {
+    dispatch(setBibles(bibles))
+    router.push("/Home")
+  }, [])
   return (
-    <>
-      <Head>
-        <title>Kainos Verses</title>
-        <meta name="description" content="Randomized Bible Verses monthly" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
-      <button
-        className="fixed bottom-4 right-4 rounded-full bg-orange-200 p-4"
-        onClick={handlePrint}
-      >
-        Print
-      </button>
-      <main className="mx-2" ref={componentRef}>
-        <VisualizeDate />
-      </main>
-    </>
+    <div className="grid h-screen items-center justify-center">
+      <h1 className="text-2xl">Loading....</h1>
+    </div>
   )
 }
 
+export const getServerSideProps = async () => {
+  const baseURL = "api.scripture.api.bible"
+  const options = {
+    method: "GET",
+    headers: {
+      "api-key": process.env.NEXT_PUBLIC_BIBLE_APP_CREDENTIALS || "",
+      "Content-Type": "application/json",
+    },
+  }
+
+  const res = await fetch(`https://${baseURL}/v1/bibles`, options)
+  // const res = await fetch("http://localhost1:3000/api/testBibles")
+  const bibles = await res.json()
+
+  return {
+    props: bibles,
+  }
+}
 export default App
