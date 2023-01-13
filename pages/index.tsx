@@ -1,12 +1,14 @@
 import Head from "next/head"
-// import { useEffect } from "react"
+import { useRef } from "react"
 import { VisualizeDate } from "../src/dateTimeHelper/"
-// import { oldTestament, newTestament } from "../src/bibleHelper"
+import { useReactToPrint } from "react-to-print"
 
-export default function Home() {
+const App: React.FC = () => {
   const date = new Date()
-  // useEffect(() => console.log(""), [])
-
+  const componentRef = useRef(null)
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  })
   return (
     <>
       <Head>
@@ -15,9 +17,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main className="w-[90%] mx-auto">
+      <button
+        className="fixed bottom-4 right-4 rounded-full bg-orange-200 p-4"
+        onClick={handlePrint}
+      >
+        Print
+      </button>
+      <main className="mx-2" ref={componentRef}>
         <VisualizeDate />
       </main>
     </>
   )
 }
+
+export default App

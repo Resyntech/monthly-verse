@@ -4,6 +4,9 @@
 
 - Local storage caching of the month
 - Database
+- Bible API
+- Optimize Redux functionality
+- Reliable randomizer
 
 - ### Known Issues
 
