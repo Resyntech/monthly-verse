@@ -37,4 +37,30 @@ export interface Bibles {
       ]
     }
   ]
+  showVerse: string
 }
+
+export interface DateMapper {
+  currentDate: number
+  currentMaxDays: number
+  currentWeekday: number
+}
+
+export interface BibleHelper {
+  bibleId: string
+  data: [
+    {
+      id: string
+      abbreviation: string
+      name: string
+      nameLong: string
+      chapters: Array<number>
+    }
+  ]
+}
+
+export type DateMap = {
+  currentDate: number
+  currentWeekday: number
+  verse: string
+}[]
