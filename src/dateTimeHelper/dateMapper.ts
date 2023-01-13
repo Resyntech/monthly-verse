@@ -1,4 +1,4 @@
-import { DateMapper, DateMap } from "../../pages/_interface"
+import { DateMapper, DateMap } from "../_interface"
 import bibleHelper from "../bibleHelper.json"
 import { getRandomInt } from "../random"
 

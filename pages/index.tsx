@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../src/redux/hooks"
 import { setBibles } from "../src/redux/reducers/biblesReducer"
-import { Bibles } from "./_interface"
+import { Bibles } from "../src/_interface"
 import { useRouter } from "next/router"
 
 const App = (bibles: Bibles): JSX.Element => {

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { currentMonth } from "."
-import { DateMap } from "../../pages/_interface"
+import { DateMap } from "../_interface"
 import { weekdays } from "./currentWeekday"
 import dateMapper from "./dateMapper"
 import bibleHelper from "../bibleHelper.json"

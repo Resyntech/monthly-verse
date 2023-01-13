@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Bibles } from "../../../pages/_interface"
+import { Bibles } from "../../_interface"
 
 const initialState: Bibles = {
   data: [{}],

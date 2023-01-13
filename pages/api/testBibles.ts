@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { Bibles } from "../_interface"
+import { Bibles } from "../../src/_interface"
 
 const objects: Bibles = {
   data: [
