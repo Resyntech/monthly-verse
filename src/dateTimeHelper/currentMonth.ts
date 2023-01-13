@@ -15,9 +15,8 @@ export default function currentMonth(date: Date) {
     { name: "november", maxDays: 30 },
     { name: "december", maxDays: 31 },
   ]
-
   let leapYear = false
-  if (date.getFullYear() % 4 === 0) leapYear = true
+  // if (date.getFullYear() % 4 === 0) leapYear = true
 
   // If it is leap year force to return february with a maxday of 29
   return leapYear && month === febRef
