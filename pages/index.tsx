@@ -12,7 +12,7 @@ const App = (bibles: Bibles): JSX.Element => {
   useEffect(() => {
     dispatch(setBibles(bibles))
     router.push("/Home")
-  }, [])
+  }, [dispatch, bibles, router])
   return (
     <div className="grid h-screen items-center justify-center">
       <h1 className="text-2xl">Loading....</h1>
@@ -21,7 +21,7 @@ const App = (bibles: Bibles): JSX.Element => {
 }
 
 export const getServerSideProps = async () => {
-  const baseURL = "api.scripture.api.bible"
+  const baseURL = "https://api.scripture.api.bible/v1/bibles"
   const options = {
     method: "GET",
     headers: {
@@ -30,7 +30,7 @@ export const getServerSideProps = async () => {
     },
   }
 
-  const res = await fetch(`https://${baseURL}/v1/bibles`, options)
+  const res = await fetch(`${baseURL}`, options)
   // const res = await fetch("http://localhost1:3000/api/testBibles")
   const bibles = await res.json()
 

@@ -3,6 +3,7 @@ import { Bibles } from "../../../pages/_interface"
 
 const initialState: Bibles = {
   data: [{}],
+  showVerse: "",
 }
 
 export const biblesSlice = createSlice({
@@ -17,9 +18,12 @@ export const biblesSlice = createSlice({
       })
       state.data = array
     },
+    setVerse: (state, action: PayloadAction<string>) => {
+      state.showVerse = action.payload
+    },
   },
 })
 
-export const { setBibles } = biblesSlice.actions
+export const { setBibles, setVerse } = biblesSlice.actions
 
 export default biblesSlice.reducer
