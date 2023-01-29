@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { biblesReducer, uiReducer } from "./reducers"
+import { bibleReducer, dateReducer, uiReducer } from "./reducers"
 
 const store = configureStore({
   reducer: {
-    bibles: biblesReducer,
+    bible: bibleReducer,
+    date: dateReducer,
     ui: uiReducer,
   },
 })

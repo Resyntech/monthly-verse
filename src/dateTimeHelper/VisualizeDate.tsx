@@ -1,15 +1,13 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { currentMonth } from "."
-import { DateMap } from "../_interface"
 import { weekdays } from "./currentWeekday"
-import dateMapper from "./dateMapper"
 import bibleHelper from "../bibleHelper.json"
-import { setVerse } from "../redux/reducers/biblesReducer"
-import { useAppDispatch } from "../redux/hooks"
+import { setVerse } from "../redux/reducers/bibleReducer"
+import { useAppDispatch, useAppSelector } from "../redux/hooks"
+import { dateMapper } from "../redux/reducers/dateReducer"
 
 function VisualizeDate() {
-  const date = new Date()
   const dispatch = useAppDispatch()
   const instance = axios.create({
     baseURL: "https://api.scripture.api.bible/v1/bibles",
@@ -19,22 +17,33 @@ function VisualizeDate() {
     },
   })
 
+  const dateState = useAppSelector((state) => state.date)
+
+  const date = new Date()
+  date.setFullYear(dateState.year)
+  date.setMonth(dateState.month)
+  date.setDate(1)
   const currentDate = date.getDate()
-  const currentMaxDays = currentMonth(date).maxDays
+  const currentMonthInfo = currentMonth({
+    month: dateState.month,
+    year: dateState.year,
+  })
   const currentWeekday = date.getDay()
 
-  const [dateMap, setDateMap] = useState<DateMap>()
-
-  useEffect(
-    () =>
-      setDateMap(dateMapper({ currentDate, currentMaxDays, currentWeekday })),
-    [currentDate, currentMaxDays, currentWeekday]
-  )
+  useEffect(() => {
+    dispatch(
+      dateMapper({
+        currentDate,
+        currentMaxDays: currentMonthInfo.maxDays,
+        currentWeekday,
+      })
+    )
+  }, [dateState.month])
 
   return (
     <section>
-      <h1 className="text-pastel-dark uppercase text-6xl text-center">
-        {currentMonth(date).name}
+      <h1 className="text-pastel-dark outline-pastel-dark uppercase text-6xl text-center">
+        {currentMonthInfo.name}
       </h1>
       <div className="bg-pastel-dark grid grid-cols-7 gap-1 p-4 rounded-lg">
         {weekdays.map((value, i: number) => {
@@ -47,13 +56,13 @@ function VisualizeDate() {
             </div>
           )
         })}
-        {dateMap?.map(({ currentDate, verse }, i: number) => {
-          const isFillerDate = currentDate === 0
+        {dateState.dateArray?.map(({ currentDate, verse }, i: number) => {
+          const isFillerDate = currentDate < 0
           return (
             <div
               key={i}
               className={`${
-                currentDate === 0 ? "bg-pastel-color1/20 " : "bg-pastel-color1"
+                currentDate < 0 ? "bg-pastel-color1/20 " : "bg-pastel-color1"
               } rounded-xl h-24 p-2`}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 const spanText =

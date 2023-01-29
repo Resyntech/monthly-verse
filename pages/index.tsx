@@ -1,18 +1,18 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../src/redux/hooks"
-import { setBibles } from "../src/redux/reducers/biblesReducer"
-import { Bibles } from "../src/_interface"
+// import { setBible } from "../src/redux/reducers/bibleReducer"
+import { Bible } from "../src/_interface"
 import { useRouter } from "next/router"
 
-const App = (bibles: Bibles): JSX.Element => {
+const App = (bible: Bible): JSX.Element => {
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const state = useAppSelector((s) => s.bibles)
+  const state = useAppSelector((s) => s.bible)
 
   useEffect(() => {
-    dispatch(setBibles(bibles))
+    // dispatch(setBibles(bibles))
     router.push("/Home")
-  }, [dispatch, bibles, router])
+  }, [dispatch])
   return (
     <div className="bg-pastel-dark grid h-screen items-center justify-center">
       <h1 className="text-pastel-accent text-2xl">Loading....</h1>
@@ -32,10 +32,10 @@ export const getServerSideProps = async () => {
 
   const res = await fetch(`${baseURL}`, options)
   // const res = await fetch("http://localhost1:3000/api/testBibles")
-  const bibles = await res.json()
+  const bible = await res.json()
 
   return {
-    props: bibles,
+    props: bible,
   }
 }
 export default App

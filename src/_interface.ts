@@ -1,4 +1,4 @@
-export interface Bibles {
+export interface Bible {
   data: [
     {
       id?: string
@@ -59,8 +59,8 @@ export interface BibleHelper {
   ]
 }
 
-export type DateMap = {
+export type DateMap = Array<{
   currentDate: number
   currentWeekday: number
   verse: string
-}[]
+}>

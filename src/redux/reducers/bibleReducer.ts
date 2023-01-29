@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Bibles } from "../../_interface"
+import { Bible } from "../../_interface"
 
-const initialState: Bibles = {
+const initialState: Bible = {
   data: [{}],
   showVerse: "",
 }
 
-export const biblesSlice = createSlice({
-  name: "bibles",
+export const bibleSlice = createSlice({
+  name: "bible",
   initialState,
   reducers: {
-    setBibles: (state, action: PayloadAction<Bibles>) => {
+    setBible: (state, action: PayloadAction<Bible>) => {
       let array: any = []
       action.payload.data.map(({ language }, i: number) => {
         if (language?.name?.toUpperCase() === "ENGLISH")
@@ -24,6 +24,6 @@ export const biblesSlice = createSlice({
   },
 })
 
-export const { setBibles, setVerse } = biblesSlice.actions
+export const { setBible, setVerse } = bibleSlice.actions
 
-export default biblesSlice.reducer
+export default bibleSlice.reducer
